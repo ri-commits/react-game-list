@@ -1,17 +1,34 @@
 import { useState } from "react";
-import Alert from "./components/Alert";
-import Button from "./components/Button";
+import Alert from "./components/MyAllert/Alert";
+import Button from "./components/Button/Button";
+import ListGroup from "./components/ListGroup";
+import "./App.css";
+import { BsCalendar2DateFill } from "react-icons/bs";
+import Like from "./components/like/Like";
 
 export const App = () => {
+  let items = ["New York", "San Francisco", "Tokyo", "Seul"];
   const [alertVisible, setAlertVisibility] = useState(false);
+
+  const handleSelectItem = (item: string) => {
+    console.log(item);
+  };
+
   return (
     <div>
+      <Like onClick={() => console.log("clicked")} />
+      <BsCalendar2DateFill color="red" size="40" />
       {alertVisible && (
         <Alert onClose={() => setAlertVisibility(false)}>My Allert</Alert>
       )}
-      <Button color="warning" onClick={() => setAlertVisibility(true)}>
+      <Button color="primary" onClick={() => setAlertVisibility(true)}>
         Richard's Button
       </Button>
+      <ListGroup
+        heading="Cities"
+        items={items}
+        onSelectItem={handleSelectItem}
+      />
     </div>
   );
 };
